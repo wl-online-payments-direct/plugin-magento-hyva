@@ -1,0 +1,214 @@
+<?php
+/**
+ * @var Magento\Framework\View\Element\Template $block
+ * @var Worldline\PaymentCore\ViewModel\WaitingPageDataProvider $pageDataProvider
+ * phpcs:disable Generic.Files.LineLength.TooLong
+ */
+
+$pageDataProvider = $block->getWaitingPageDataProvider();
+$quote = $pageDataProvider->getQuote();
+?>
+
+<div class="waiting-page-container flex flex-wrap justify-between">
+    <div class="opc-waiting-loader w-2/4 min-w-[280px]">
+        <div class="message" style="display: none"></div>
+        <div class="waiting-loader-wrapper">
+            <span class="block" id="waiting-notification-message">
+                <?= $block->escapeHtml($pageDataProvider->getNotificationMessage()) ?>
+            </span>
+            <div id="waiting-loader" data-role="waiting-loader" class="waiting-mask my-0.5 min-h-[280px] p-2 mb-6 mt-6 flex justify-center items-center">
+                <div class="loader inline-block">
+                    <img src="<?= $block->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"
+                         alt="<?= $block->escapeHtml(__('Loading...')) ?>">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="opc-block-summary md:w-1/4 min-w-[280px] p-4 bg-gray-100 w-full">
+        <span class="border-b title text-2xl font-medium text-gray-900 title-font mb-3 pb-3 block">
+            <?= $block->escapeHtml(__('Order Summary')) ?>
+        </span>
+        <table class="data table table-totals text-left w-full">
+            <tbody class="flex flex-col mb-2">
+                <tr class="totals sub mb-2 flex justify-between w-full">
+                    <th class="mark"><?= $block->escapeHtml(__('Cart Subtotal')) ?></th>
+                    <td class="amount">
+                        <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$quote->getSubtotal()) ?>
+                    </td>
+                </tr>
+                <?php if ($quote->getShippingAddress()->getDiscountAmount()): ?>
+                    <tr class="totals discount mb-2 flex justify-between w-full">
+                        <th class="mark" scope="row">
+                            <span class="title"><?= $block->escapeHtml(__('Discount')) ?></span>
+                            <span class="discount coupon"></span>
+                        </th>
+                        <td class="amount">
+                            <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$quote->getShippingAddress()->getDiscountAmount()) ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            <tr class="totals shipping excl mb-2 flex justify-between w-full">
+                <th class="mark">
+                    <span class="label"><?= $block->escapeHtml(__('Shipping')) ?></span>
+                    <span class="value"><?= $block->escapeHtml($quote->getShippingAddress()->getShippingDescription()) ?></span>
+                </th>
+                <td class="amount">
+                    <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$quote->getShippingAddress()->getShippingAmount()) ?>
+                </td>
+            </tr>
+            <?php if ($quote->getShippingAddress()->getTaxAmount()): ?>
+                <tr class="totals-tax mb-2 flex justify-between w-full">
+                    <th class="mark" scope="row"><?= $block->escapeHtml(__('Tax')) ?></th>
+                    <td class="amount">
+                        <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$quote->getShippingAddress()->getTaxAmount()) ?>
+                    </td>
+                </tr>
+            <?php endif; ?>
+            <tr class="grand totals mb-2 flex justify-between w-full border-t mt-3 pt-3 ">
+                <th class="mark">
+                    <strong><?= $block->escapeHtml(__('Order Total')) ?></strong>
+                </th>
+                <td class="amount">
+                    <strong><?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$quote->getGrandTotal()) ?></strong>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="max-w-xl mx-auto" x-data="{selected:1}">
+            <div @click="selected !== 1 ? selected = 1 : selected = null"
+                class="title py-2 mb-" role="tab" aria-selected="true" aria-expanded="true" tabindex="0">
+                <strong role="heading" aria-level="1" class="flex flex-start items-center justify-between cursor-pointer">
+                    <span>
+                        <span><?= $block->escapeHtml($quote->getItemsCount()) ?></span><span><?= $block->escapeHtml(__('Item in Cart')) ?></span>
+                    </span>
+                    <span>+</span>
+                </strong>
+            </div>
+            <div style="" x-ref="container1" x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''"
+                class="w-full text-left relative overflow-hidden transition-all max-h-0 duration-700 content minicart-items" role="tabpanel" aria-hidden="false" style="">
+                <div class="minicart-items-wrapper">
+                    <ol class="minicart-items">
+                        <?php foreach ($quote->getAllItems() as $item): ?>
+                            <?php
+                            if ($item->getParentItem()):
+                                continue;
+                            endif;
+                            ?>
+                            <li class="product-item">
+                                <div class="product flex">
+                                    <span class="block w-1/6 mr-4">
+                                        <img src="<?= $block->escapeUrl($pageDataProvider->getResizedImageUrl($item->getProduct())) ?>"
+                                             class="bg-white border border-gray-200"
+                                             style="display: block;width: 100%; height: auto; max-height: none;"
+                                             alt="<?= $block->escapeHtml($item->getName()) ?>"
+                                             title="<?= $block->escapeHtml($item->getName()) ?>">
+                                    </span>
+                                    <div class="product-item-details">
+                                        <div class="product-item-inner">
+                                            <div class="product-item-name-block">
+                                                <strong class="product-item-name"><?= $block->escapeHtml($item->getName()) ?></strong>
+                                                <div class="details-qty">
+                                                    <span class="label"><span><?= $block->escapeHtml(__('Qty')) ?></span></span>
+                                                    <span class="value"><?= $block->escapeHtml($item->getQty()) ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="subtotal">
+                                            <span class="price-excluding-tax">
+                                                <span class="cart-price">
+                                                    <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$item->getPrice()) ?>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        let defaults = {
+            count: 0,
+            storeCode: "<?= $block->escapeHtml($pageDataProvider->getStoreCode()) ?>",
+            incrementId: "<?= $block->escapeHtml($pageDataProvider->getIncrementId()) ?>",
+            checkOrderUrl: "<?= $block->escapeUrl($pageDataProvider->checkOrderUrl()) ?>",
+            successUrl: "<?= $block->escapeUrl($pageDataProvider->successUrl()) ?>",
+            failUrl: "<?= $block->escapeUrl($pageDataProvider->failUrl()) ?>",
+            pendingPageUrl: "<?= $block->escapeUrl($pageDataProvider->pendingPageUrl()) ?>",
+            pendingOrderUrl: "<?= $block->escapeUrl($pageDataProvider->pendingOrderUrl()) ?>"
+        };
+
+        const formData = 'incrementId=' + defaults.incrementId;
+
+        let processPendingOrder = function () {
+            fetch(defaults.pendingOrderUrl, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'Accept': 'application/json, text/javascript, */*; q=0.01',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    window.location.replace(defaults.pendingPageUrl);
+                }
+
+                return response.json()
+            })
+            .then(result => {
+                console.log(result);
+                if (!result || result.error) {
+                    window.location.replace(defaults.pendingPageUrl);
+
+                    return;
+                }
+
+                if (result.status) {
+                    window.location.replace(defaults.successUrl);
+                } else {
+                    window.location.replace(defaults.pendingPageUrl);
+                }
+            })
+        };
+
+        let sendRequest = function () {
+            defaults.count++;
+
+            fetch(defaults.checkOrderUrl, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'Accept': 'application/json, text/javascript, */*; q=0.01',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === true) {
+                    window.location.replace(defaults.successUrl);
+                } else {
+                    if (defaults.count < 7) {
+                        setTimeout(sendRequest, 2000);
+                    } else {
+                        setTimeout(function () {
+                            processPendingOrder();
+                        }, 1000);
+                    }
+                }
+            })
+        };
+
+        sendRequest();
+    })();
+</script>
