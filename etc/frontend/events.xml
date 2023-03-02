@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="hyva_config_generate_before">
+        <observer name="Worldline_ThemeHyva::register_module_for_hyva"
+                  instance="Worldline\ThemeHyva\Observer\RegisterModuleForHyvaConfig"/>
+    </event>
+</config>

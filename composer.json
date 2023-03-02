@@ -1,0 +1,28 @@
+{
+    "name": "worldline/module-magento-theme-hyva",
+    "description": "Worldline Online Payments Theme Hyva",
+    "require": {
+        "php": ">=7.3",
+        "worldline/module-magento-payment-core": ">=2.6.0",
+        "hyva-themes/magento2-theme-module": ">=1.1.12"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "Worldline Online Payments",
+            "homepage": "https://worldline.com/"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Worldline\\ThemeHyva\\": ""
+        }
+    }
+}

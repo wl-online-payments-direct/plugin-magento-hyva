@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var Magento\Framework\View\Element\Template $block
+ * @var Worldline\PaymentCore\ViewModel\PendingPaymentPageDataProvider $pageDataProvider
+ * phpcs:disable Generic.Files.LineLength.TooLong
+ */
+
+$pageDataProvider = $block->getPendingPaymentPageDataProvider();
+?>
+<style>
+    #pending-payment-notification-message a {
+        text-decoration: underline;
+    }
+</style>
+<div class="pending-payment-page-container min-h-[325px]">
+    <div id="pending-payment-notification-message">
+        <span><?= $block->escapeHtml(__($pageDataProvider->getNotificationMessage()), ['br', 'a']) ?></span>
+    </div>
+    <br/>
+    <div id="pending-payment-continue-shopping">
+        <a class="w-auto inline-block btn btn-primary" href="<?= $block->escapeUrl($pageDataProvider->getMainPageUrl()) ?>">
+            <span><?= $block->escapeHtml(__('Continue Shopping')) ?></span>
+        </a>
+    </div>
+</div>
