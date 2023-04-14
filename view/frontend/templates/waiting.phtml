@@ -48,24 +48,32 @@ $quote = $pageDataProvider->getQuote();
                         </td>
                     </tr>
                 <?php endif; ?>
-            <tr class="totals shipping excl mb-2 flex justify-between w-full">
-                <th class="mark">
-                    <span class="label"><?= $block->escapeHtml(__('Shipping')) ?></span>
-                    <span class="value"><?= $block->escapeHtml($quote->getShippingAddress()->getShippingDescription()) ?></span>
-                </th>
-                <td class="amount">
-                    <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$quote->getShippingAddress()->getShippingAmount()) ?>
-                </td>
-            </tr>
-            <?php if ($quote->getShippingAddress()->getTaxAmount()): ?>
-                <tr class="totals-tax mb-2 flex justify-between w-full">
-                    <th class="mark" scope="row"><?= $block->escapeHtml(__('Tax')) ?></th>
+                <tr class="totals shipping excl mb-2 flex justify-between w-full">
+                    <th class="mark">
+                        <span class="label"><?= $block->escapeHtml(__('Shipping')) ?></span>
+                        <span class="value"><?= $block->escapeHtml($quote->getShippingAddress()->getShippingDescription()) ?></span>
+                    </th>
                     <td class="amount">
-                        <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$quote->getShippingAddress()->getTaxAmount()) ?>
+                        <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$quote->getShippingAddress()->getShippingAmount()) ?>
                     </td>
                 </tr>
-            <?php endif; ?>
-            <tr class="grand totals mb-2 flex justify-between w-full border-t mt-3 pt-3 ">
+                <?php if ($quote->getShippingAddress()->getTaxAmount()): ?>
+                    <tr class="totals-tax mb-2 flex justify-between w-full">
+                        <th class="mark" scope="row"><?= $block->escapeHtml(__('Tax')) ?></th>
+                        <td class="amount">
+                            <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice((float)$quote->getShippingAddress()->getTaxAmount()) ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+                <?php if ($pageDataProvider->getSurchargeAmount() > 0): ?>
+                    <tr class="totals-surcharging mb-2 flex justify-between w-full">
+                        <th class="mark" scope="row"><?= $block->escapeHtml(__('Surcharging')) ?></th>
+                        <td class="amount">
+                            <?= /* @noEscape */ $pageDataProvider->convertAndFormatPrice($pageDataProvider->getSurchargeAmount()) ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+                <tr class="grand totals mb-2 flex justify-between w-full border-t mt-3 pt-3 ">
                 <th class="mark">
                     <strong><?= $block->escapeHtml(__('Order Total')) ?></strong>
                 </th>
