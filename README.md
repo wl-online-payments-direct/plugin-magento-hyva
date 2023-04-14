@@ -13,5 +13,8 @@ Worldline payment solutions work with [Luma Checkout](https://docs.hyva.io/check
 
 ### Change log:
 
+#### 1.1.0
+- Add surcharge functionality.
+
 #### 1.0.0
 - Initial version.
