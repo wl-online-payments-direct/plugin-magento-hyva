@@ -9,9 +9,9 @@ $pageDataProvider = $block->getWaitingPageDataProvider();
 $quote = $pageDataProvider->getQuote();
 ?>
 
-<div class="waiting-page-container flex flex-wrap justify-between">
+<div class="waiting-page-container flex flex-wrap justify-between" x-data="orderStatus()" x-init="sendRequest()">
     <div class="opc-waiting-loader w-2/4 min-w-[280px]">
-        <div class="message" style="display: none"></div>
+        <div x-show="message" class="message" x-text="message"></div>
         <div class="waiting-loader-wrapper">
             <span class="block" id="waiting-notification-message">
                 <?= $block->escapeHtml($pageDataProvider->getNotificationMessage()) ?>
@@ -142,8 +142,8 @@ $quote = $pageDataProvider->getQuote();
 </div>
 
 <script>
-    (function () {
-        let defaults = {
+    function orderStatus() {
+        return {
             count: 0,
             storeCode: "<?= $block->escapeHtml($pageDataProvider->getStoreCode()) ?>",
             incrementId: "<?= $block->escapeHtml($pageDataProvider->getIncrementId()) ?>",
@@ -151,72 +151,69 @@ $quote = $pageDataProvider->getQuote();
             successUrl: "<?= $block->escapeUrl($pageDataProvider->successUrl()) ?>",
             failUrl: "<?= $block->escapeUrl($pageDataProvider->failUrl()) ?>",
             pendingPageUrl: "<?= $block->escapeUrl($pageDataProvider->pendingPageUrl()) ?>",
-            pendingOrderUrl: "<?= $block->escapeUrl($pageDataProvider->pendingOrderUrl()) ?>"
+            pendingOrderUrl: "<?= $block->escapeUrl($pageDataProvider->pendingOrderUrl()) ?>",
+            message: '',
+
+            showMessage: function (message) {
+                this.message = message;
+            },
+
+            sendRequest: function () {
+                this.count++;
+                const formKey = hyva.getFormKey();
+                const postUrl = this.checkOrderUrl;
+                const incrementId = this.incrementId;
+
+                fetch(postUrl, {
+                    "headers": {
+                        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                    },
+                    "body": "form_key=" + formKey + "&incrementId=" + incrementId + "&uenc=" + hyva.getUenc(),
+                    "method": "POST",
+                    "mode": "cors",
+                    "credentials": "include"
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === true) {
+                            window.location.replace(this.successUrl);
+                        } else {
+                            setTimeout(() => this.processPendingOrder(), 1000);
+                        }
+                    })
+                    .catch(error => {
+                        // Handle the error if needed
+                    });
+            },
+
+            processPendingOrder: function () {
+                const formKey = hyva.getFormKey();
+                const postUrl = this.pendingOrderUrl;
+                const incrementId = this.incrementId;
+
+                fetch(postUrl, {
+                    "headers": {
+                        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                    },
+                    "body": "form_key=" + formKey + "&incrementId=" + incrementId + "&uenc=" + hyva.getUenc(),
+                    "method": "POST",
+                    "mode": "cors",
+                    "credentials": "include"
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            window.location.replace(this.pendingPageUrl);
+                        } else if (data.status) {
+                            window.location.replace(this.successUrl);
+                        } else {
+                            window.location.replace(this.pendingPageUrl);
+                        }
+                    })
+                    .catch(error => {
+                        // Handle the error if needed
+                    });
+            }
         };
-
-        const formData = 'incrementId=' + defaults.incrementId;
-
-        let processPendingOrder = function () {
-            fetch(defaults.pendingOrderUrl, {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                    'Accept': 'application/json, text/javascript, */*; q=0.01',
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    window.location.replace(defaults.pendingPageUrl);
-                }
-
-                return response.json()
-            })
-            .then(result => {
-                console.log(result);
-                if (!result || result.error) {
-                    window.location.replace(defaults.pendingPageUrl);
-
-                    return;
-                }
-
-                if (result.status) {
-                    window.location.replace(defaults.successUrl);
-                } else {
-                    window.location.replace(defaults.pendingPageUrl);
-                }
-            })
-        };
-
-        let sendRequest = function () {
-            defaults.count++;
-
-            fetch(defaults.checkOrderUrl, {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                    'Accept': 'application/json, text/javascript, */*; q=0.01',
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.status === true) {
-                    window.location.replace(defaults.successUrl);
-                } else {
-                    if (defaults.count < 7) {
-                        setTimeout(sendRequest, 2000);
-                    } else {
-                        setTimeout(function () {
-                            processPendingOrder();
-                        }, 1000);
-                    }
-                }
-            })
-        };
-
-        sendRequest();
-    })();
+    }
 </script>

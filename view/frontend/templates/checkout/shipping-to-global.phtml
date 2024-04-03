@@ -1,0 +1,27 @@
+<?php
+declare(strict_types=1);
+
+/** @var Template $block */
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+/** @var ViewModelRegistry $viewModels */
+
+$isVirtual = $viewModels->require(
+    \Hyva\Checkout\ViewModel\Checkout\AddressView\AddressViewBilling::class
+)->isVirtual();
+?>
+
+<script>
+    if (!!'<?= (bool)$isVirtual ?>') {
+        window['shipping_method_active'] = 'virtual';
+    } else {
+        window.addEventListener('checkout:shipping:method-activate', event => {
+            window['shipping_method_active'] = event.detail.method;
+        });
+    }
+</script>

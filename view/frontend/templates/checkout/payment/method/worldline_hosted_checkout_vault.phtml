@@ -1,0 +1,80 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2022-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+/** @var Template $block */
+/** @var Banktransfer $method */
+
+/** @var Escaper $escaper */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Magento\OfflinePayments\Model\Banktransfer;
+
+$mageWire = $block->getData('magewire');
+$methodCode = $mageWire->setMethodCode(str_replace('checkout.payment.method.', '', $block->getNameInLayout()));
+?>
+<div>
+    <ul class="list"
+        x-on:restart-worldline-hosted-vault.window="restartWorldlineHostedCheckoutVault"
+        x-data="{
+            isLoading: true,
+            nameInLayout: <?= $escaper->escapeHtmlAttr("'" . $block->getNameInLayout() . "'"); ?>,
+            showLoader() {
+                window.dispatchEvent(new Event('magewire:loader:start'))
+            },
+            restartWorldlineHostedCheckoutVault(event) {
+                const component = Magewire.find(this.nameInLayout);
+                component.setAdditionalInformation(JSON.stringify({
+                    color_depth: window.screen.colorDepth,
+                    java_enabled: window.navigator.javaEnabled(),
+                    locale: window.navigator.language,
+                    screen_height: window.screen.height,
+                    screen_width: window.screen.width,
+                    timezone_offset_utc_minutes: (new Date()).getTimezoneOffset(),
+                    is_active_payment_token_enabler: Boolean(<?= /** noEscape */ $mageWire->isActivePaymentTokenEnabler(); ?>),
+                    public_hash: event.detail.publicHash,
+                    customer_id: <?= /* @noEscape */ $mageWire->getCustomerId(); ?>
+                }));
+                window.dispatchEvent(new Event('magewire:loader:done'));
+            }
+        }">
+        <?php foreach ($mageWire->getTokensByMethod() as $i => $token): ?>
+            <li class="token mb-2 cursor-pointer flex items-center"
+                x-on:click="showLoader()"
+                wire:click.prevent="setPublicHash('<?= /* @noEscape */ $token->getPublicHash(); ?>')">
+                <?php
+                $details = $mageWire->getDetails($token->getDetails());
+                $icon = $mageWire->getIconByType($details['type']);
+                ?>
+                <input type="radio"
+                       id="payment[<?= $escaper->escapeHtmlAttr($token->getPublicHash()); ?>]"
+                       name="payment[<?= $escaper->escapeHtmlAttr($token->getPaymentMethodCode()); ?>]"
+                       class="radio mr-2"
+                       value="<?= $escaper->escapeHtmlAttr($token->getPublicHash()) ?>"
+                       wire:model="currentPublicHash">
+                <?php if ($icon['url']): ?>
+                <img src="<?= $escaper->escapeUrl($icon['url']); ?>"
+                     width="<?= $escaper->escapeHtmlAttr($icon['width']); ?>"
+                     height="<?= $escaper->escapeHtmlAttr($icon['height']); ?>"
+                     alt="<?= $escaper->escapeHtmlAttr($icon['title']); ?>">
+                <?php endif; ?>
+                <span class="ml-2 mr-2"><?= $escaper->escapeHtml($details['maskedCC']); ?></span>
+                (<?= $escaper->escapeHtml($details['expirationDate']); ?>)
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<script>
+    (() => {
+        window.addEventListener('checkout:payment:method-activate', (event) => {
+            hyvaCheckout.payment.activate('<?= /** noEscape */ $methodCode ?>', {})
+        }, { once: true });
+    })()
+</script>

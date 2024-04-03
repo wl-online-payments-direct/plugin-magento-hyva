@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="sales" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <group id="totals_sort" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
+                <field id="worldline_payment_surcharging" translate="label" type="text" sortOrder="500"
+                       showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Worldline Payment Surcharging</label>
+                    <validate>required-number validate-number</validate>
+                </field>
+            </group>
+        </section>
+        <section id="worldline_payment">
+            <group id="redirect_payment" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="vault_title" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Vault Title</label>
+                    <validate>required-entry</validate>
+                    <config_path>payment/worldline_redirect_payment/title</config_path>
+                    <depends>
+                        <field id="active">1</field>
+                        <field id="vault">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

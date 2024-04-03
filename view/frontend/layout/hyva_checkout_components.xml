@@ -1,0 +1,1510 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2022-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkout.payment.methods.before">
+            <block name="checkout.payment.methods.fix-active"
+                   template="Worldline_ThemeHyva::checkout/fix_active_method.phtml" before="-"/>
+            <block name="checkout.payment.methods.notification"
+                   template="Worldline_ThemeHyva::checkout/notification.phtml">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Worldline\ThemeHyva\ViewModel\Payment\Notification
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="price-summary.total-segments">
+            <block name="price-summary.total-segment.worldline_payment_surcharging"
+                   as="worldline_payment_surcharging"
+                   template="Worldline_ThemeHyva::checkout/price-summary/total-segments/surcharging.phtml"/>
+        </referenceBlock>
+
+        <referenceBlock name="checkout.payment.methods">
+
+            <block name="checkout.payment.method.worldline_cc"
+                   as="worldline_cc"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_cc.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineCc
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icons_provider" xsi:type="array">
+                            <item name="method" xsi:type="string">worldline_cc</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_cc_vault"
+                   as="worldline_cc_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_cc_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineCc
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_hosted_checkout"
+                   as="worldline_hosted_checkout"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_hosted_checkout.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icons_provider" xsi:type="array">
+                            <item name="method" xsi:type="string">worldline_hosted_checkout</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_hosted_checkout_vault"
+                   as="worldline_hosted_checkout_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_hosted_checkout_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_1_vault"
+                   as="worldline_redirect_payment_1_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">1</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_1"
+                   as="worldline_redirect_payment_1"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">1</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_2_vault"
+                   as="worldline_redirect_payment_2_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">2</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_2"
+                   as="worldline_redirect_payment_2"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">2</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment"
+                   as="worldline_redirect_payment"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault_group.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineRedirectVault
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3_vault"
+                   as="worldline_redirect_payment_3_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3"
+                   as="worldline_redirect_payment_3"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_56_vault"
+                   as="worldline_redirect_payment_56_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">56</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_56"
+                   as="worldline_redirect_payment_56"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">56</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_117_vault"
+                   as="worldline_redirect_payment_117_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">117</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_117"
+                   as="worldline_redirect_payment_117"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">117</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_125_vault"
+                   as="worldline_redirect_payment_125_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">125</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_125"
+                   as="worldline_redirect_payment_125"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">125</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_130_vault"
+                   as="worldline_redirect_payment_130_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">130</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_130"
+                   as="worldline_redirect_payment_130"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">130</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_132_vault"
+                   as="worldline_redirect_payment_132_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">132</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_132"
+                   as="worldline_redirect_payment_132"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">132</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_302_vault"
+                   as="worldline_redirect_payment_302_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">302</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_302"
+                   as="worldline_redirect_payment_302"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">302</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_320_vault"
+                   as="worldline_redirect_payment_320_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">320</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_320"
+                   as="worldline_redirect_payment_320"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">320</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_771_vault"
+                   as="worldline_redirect_payment_771_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">771</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_771"
+                   as="worldline_redirect_payment_771"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">771</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_809_vault"
+                   as="worldline_redirect_payment_809_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">809</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_809"
+                   as="worldline_redirect_payment_809"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">809</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_840_vault"
+                   as="worldline_redirect_payment_840_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">840</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_840"
+                   as="worldline_redirect_payment_840"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">840</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3012_vault"
+                   as="worldline_redirect_payment_3012_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3012</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3012"
+                   as="worldline_redirect_payment_3012"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3012</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3111_vault"
+                   as="worldline_redirect_payment_3111_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3111</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3111"
+                   as="worldline_redirect_payment_3111"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3111</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3112_vault"
+                   as="worldline_redirect_payment_3112_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3112</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3112"
+                   as="worldline_redirect_payment_3112"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3112</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3124_vault"
+                   as="worldline_redirect_payment_3124_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3124</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3124"
+                   as="worldline_redirect_payment_3124"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3124</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3301_vault"
+                   as="worldline_redirect_payment_3301_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3301</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3301"
+                   as="worldline_redirect_payment_3301"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3301</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3302_vault"
+                   as="worldline_redirect_payment_3302_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3302</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3302"
+                   as="worldline_redirect_payment_3302"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3302</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3303_vault"
+                   as="worldline_redirect_payment_3303_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3303</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3303"
+                   as="worldline_redirect_payment_3303"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3303</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3305_vault"
+                   as="worldline_redirect_payment_3305_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3305</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3305"
+                   as="worldline_redirect_payment_3305"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3305</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5001_vault"
+                   as="worldline_redirect_payment_5001_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5001</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5001"
+                   as="worldline_redirect_payment_5001"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5001</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5100_vault"
+                   as="worldline_redirect_payment_5100_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5100</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5100"
+                   as="worldline_redirect_payment_5100"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5100</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5110_vault"
+                   as="worldline_redirect_payment_5110_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5110</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5110"
+                   as="worldline_redirect_payment_5110"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5110</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3304_vault"
+                   as="worldline_redirect_payment_3304_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3304</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_3304"
+                   as="worldline_redirect_payment_3304"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">3304</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5125_vault"
+                   as="worldline_redirect_payment_5125_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5125</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5125"
+                   as="worldline_redirect_payment_5125"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5125</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5402_vault"
+                   as="worldline_redirect_payment_5402_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5402</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5402"
+                   as="worldline_redirect_payment_5402"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5402</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5404_vault"
+                   as="worldline_redirect_payment_5404_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5404</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5404"
+                   as="worldline_redirect_payment_5404"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5404</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5405_vault"
+                   as="worldline_redirect_payment_5405_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5405</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5405"
+                   as="worldline_redirect_payment_5405"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5405</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5406_vault"
+                   as="worldline_redirect_payment_5406_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5406</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5406"
+                   as="worldline_redirect_payment_5406"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5406</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5407_vault"
+                   as="worldline_redirect_payment_5407_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5407</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5407"
+                   as="worldline_redirect_payment_5407"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5407</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5408_vault"
+                   as="worldline_redirect_payment_5408_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5408</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5408"
+                   as="worldline_redirect_payment_5408"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5408</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5500_vault"
+                   as="worldline_redirect_payment_5500_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5500</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5500"
+                   as="worldline_redirect_payment_5500"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5500</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5600_vault"
+                   as="worldline_redirect_payment_5600_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5600</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5600"
+                   as="worldline_redirect_payment_5600"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5600</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5700_vault"
+                   as="worldline_redirect_payment_5700_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5700</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5700"
+                   as="worldline_redirect_payment_5700"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5700</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5701_vault"
+                   as="worldline_redirect_payment_5701_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5701</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5701"
+                   as="worldline_redirect_payment_5701"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5701</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5702_vault"
+                   as="worldline_redirect_payment_5702_vault"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment_vault.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5702</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block name="checkout.payment.method.worldline_redirect_payment_5702"
+                   as="worldline_redirect_payment_5702"
+                   template="Worldline_ThemeHyva::checkout/payment/method/worldline_redirect_payment.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Worldline\ThemeHyva\Magewire\Payment\Method\WorldlineHostedCheckout
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="additional_icon_provider" xsi:type="array">
+                            <item name="key" xsi:type="string">5702</item>
+                            <item name="method" xsi:type="string">worldline_redirect_payment</item>
+                            <item name="template" xsi:type="string">
+                                Worldline_ThemeHyva::checkout/payment/image.phtml
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="magewire.plugin.scripts">
+            <block class="Worldline\CreditCard\Block\Checkout\Head" name="worldline.checkout.head" after="-"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,77 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2022-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+/** @var Template $block */
+/** @var Banktransfer $method */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+/** @var Magewire $magewire */
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Magento\OfflinePayments\Model\Banktransfer;
+use Hyva\Checkout\ViewModel\Checkout\Payment\MethodList as ViewModel;
+use Hyva\Checkout\Magewire\Checkout\Payment\MethodList as Magewire;
+
+$mageWire = $block->getData('magewire');
+$methodCode = $mageWire->setMethodCode(str_replace('checkout.payment.method.', '', $block->getNameInLayout()));
+$viewModel = $viewModels->require(ViewModel::class);
+?>
+<div id="worldline-pay-wrapper" wire:key="<?= /* @noEscape */ $methodCode ?>">
+    <ul class="list">
+        <?php foreach ($mageWire->getTokensByMethod() as $i => $method): ?>
+            <?php $methodCodeAttr = $escaper->escapeHtmlAttr($method->getCode()) ?>
+            <?php $methodMetaData = $viewModel->getMethodMetaData($block->getParentBlock(), $method) ?>
+            <li id="payment-method-option-<?= /* @noEscape */ $method->getCode() ?>">
+                <div class="flex gap-x-4">
+                    <div class="flex items-center">
+                        <input type="radio"
+                               class="flex-none disabled:opacity-25"
+                               id="payment-method-<?= /* @noEscape */ $methodCodeAttr ?>"
+                               name="payment[<?= $escaper->escapeHtmlAttr($methodCodeAttr); ?>]"
+                               value="<?= /* @noEscape */ $methodCodeAttr ?>"
+                               wire:model="currentMethod"
+                        />
+                    </div>
+
+                    <label class="flex justify-between cursor-pointer w-full relative space-x-4"
+                           for="payment-method-<?= /* @noEscape */ $methodCodeAttr ?>"
+                    >
+                        <div class="text-gray-700 font-bold flex flex-col">
+                            <?= $escaper->escapeHtml($method->getTitle()) ?>
+
+                            <?php if ($methodMetaData->hasSubTitle()): ?>
+                                <span class="text-gray-500 font-medium text-sm">
+                                    <?= $escaper->escapeHtml($methodMetaData->getSubTitle()) ?>
+                                </span>
+                            <?php endif ?>
+                        </div>
+
+                        <?php if ($methodMetaData->canRenderIcon()): ?>
+                            <div class="-mt-2.5">
+                                <?= /* @noEscape */ $methodMetaData->renderIcon() ?>
+                            </div>
+                        <?php endif ?>
+                    </label>
+                </div>
+                <?php if ($mageWire->currentMethod === $method->getCode()): ?>
+                    <?php $html = $viewModel->getMethodBlock($block->getParentBlock(), $method)->toHtml() ?>
+
+                    <?php if (!empty($html)): ?>
+                        <div id="<?= 'payment-method-view-' . /* @noEscape */ $methodCodeAttr ?>" class="w-full pl-8 mt-4">
+                            <?= /* @noEscape */ $html ?>
+                        </div>
+                    <?php endif ?>
+                <?php endif ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
