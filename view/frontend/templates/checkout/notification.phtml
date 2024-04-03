@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Worldline\ThemeHyva\ViewModel\Payment\Notification as ViewModel;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+/** @var ViewModelRegistry $viewModels */
+/** @var ViewModel $viewModel */
+
+$viewModel = $viewModels->require(ViewModel::class);
+$config = $viewModel->getConfig();
+?>
+<?php if (isset($config['worldlineCheckoutConfig'])): ?>
+    <script>
+        setTimeout(() => {
+            typeof window.dispatchMessages !== "undefined" && window.dispatchMessages([{
+                type: 'notice',
+                text: '<?= $escaper->escapeJs(__($config['worldlineCheckoutConfig']['surchargeMessage'])) ?>'
+            }]);
+        }, 2000);
+    </script>
+<?php endif; ?>

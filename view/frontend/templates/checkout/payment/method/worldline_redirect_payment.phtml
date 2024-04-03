@@ -1,0 +1,43 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2022-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+/** @var Template $block */
+/** @var Banktransfer $method */
+/** @var Escaper $escaper */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Magento\OfflinePayments\Model\Banktransfer;
+
+$mageWire = $block->getData('magewire');
+$methodCode = $mageWire->setMethodCode(str_replace('checkout.payment.method.', '', $block->getNameInLayout()));
+?>
+<script>
+    (() => {
+        const isActivePaymentToken = Boolean('<?= /** noEscape */ $mageWire->isActivePaymentTokenEnabler(); ?>');
+        window.addEventListener('checkout:payment:method-activate', (event) => {
+            hyvaCheckout.payment.activate('<?= /** noEscape */ $methodCode ?>', {
+                async initialize() {
+                    const component = Magewire.find('<?= $escaper->escapeHtml($block->getNameInLayout()) ?>');
+                    component.setAdditionalInformation(JSON.stringify({
+                        color_depth: window.screen.colorDepth,
+                        java_enabled: window.navigator.javaEnabled(),
+                        locale: window.navigator.language,
+                        screen_height: window.screen.height,
+                        screen_width: window.screen.width,
+                        timezone_offset_utc_minutes: (new Date()).getTimezoneOffset(),
+                        is_active_payment_token_enabler: isActivePaymentToken,
+                        public_hash: null
+                    }));
+                }
+            })
+        }, { once: true });
+    })()
+</script>

@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Hyva\CompatModuleFallback\Model\CompatModuleRegistry">
@@ -11,5 +10,14 @@
                 </item>
             </argument>
         </arguments>
+    </type>
+    <type name="Hyva\Checkout\Model\MethodMetaData">
+        <plugin name="MethodMetaData::renderIcon"
+                type="Worldline\ThemeHyva\Plugin\MethodMetaDataPlugin"
+                sortOrder="100"/>
+    </type>
+
+    <type name="Magento\Quote\Api\PaymentMethodManagementInterface">
+        <plugin name="worldline_redirect_payment" type="Worldline\ThemeHyva\Plugin\AvailableMethodsFilterPlugin"/>
     </type>
 </config>

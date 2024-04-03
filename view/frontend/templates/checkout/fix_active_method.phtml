@@ -1,0 +1,17 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+?>
+<script>
+    window.addEventListener('checkout:payment:method-activate', (event) => {
+        if (!event.detail.method.includes('worldline_')) {
+            hyvaCheckout.payment.method = null
+        }
+    });
+</script>

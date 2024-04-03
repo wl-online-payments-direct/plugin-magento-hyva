@@ -1,0 +1,156 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2022-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+/** @var Template $block */
+
+/** @var Banktransfer $method */
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Magento\OfflinePayments\Model\Banktransfer;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+/** @var ViewModelRegistry $viewModels */
+
+$mageWire = $block->getData('magewire');
+$methodCode = $mageWire->setMethodCode(str_replace('checkout.payment.method.', '', $block->getNameInLayout()));
+?>
+<div id="worldline-pay-wrapper" wire:key="<?= /* @noEscape */ $methodCode ?>"
+     x-init="initIframeForm(window.Tokenizer)"
+     x-on:submit-worldline-cc.window="submitOrder"
+     x-data="{
+            tokenizerIframeRender: null,
+            isLoading: true,
+            nameInLayout: <?= $escaper->escapeHtmlAttr("'" . $block->getNameInLayout() . "'"); ?>,
+            iframeUrl: <?= $escaper->escapeHtmlAttr("'" . $mageWire->getIframeUrl() . "'"); ?>,
+            initIframeForm(sdk) {
+                this.tokenizerIframeRender = new sdk(
+                    this.iframeUrl,
+                    'div-hosted-tokenization',
+                    { hideCardholderName: false }
+                );
+
+                this.tokenizerIframeRender.initialize()
+                    .then(() => {
+                        this.isLoading = false;
+                    })
+                    .catch(reason => {
+                        this.isLoading = false;
+                    });
+
+                window.iframeRender = this.tokenizerIframeRender;
+            },
+            showLoader() {
+                window.dispatchEvent(new Event('magewire:loader:start'));
+            },
+            surchargeEvent() {
+                if(window.iframeRender) {
+                    window.iframeRender.submitTokenization().then(async (result) => {
+                        if (result.success) {
+                            this.showLoader();
+                            const component = Magewire.find(this.nameInLayout);
+                            component.calculateSurcharge(result.hostedTokenizationId);
+                            component.setAdditionalInformation(JSON.stringify({
+                                color_depth: window.screen.colorDepth,
+                                java_enabled: window.navigator.javaEnabled(),
+                                locale: window.navigator.language,
+                                screen_height: window.screen.height,
+                                screen_width: window.screen.width,
+                                timezone_offset_utc_minutes: (new Date()).getTimezoneOffset(),
+                                hosted_tokenization_id: result.hostedTokenizationId,
+                                is_active_payment_token_enabler: Boolean(<?= /** noEscape */ $mageWire->isActivePaymentTokenEnabler(); ?>),
+                                public_hash: null
+                            }));
+                        }
+                    });
+                }
+            }
+        }">
+    <div id="div-hosted-tokenization" wire:ignore></div>
+
+    <?php if ($mageWire->isApplySurcharge() && !$mageWire->isOscValid): ?>
+        <button type="button"
+                id="worldline-authorize"
+                x-on:click="surchargeEvent()"
+                class="btn btn-primary
+            disabled:opacity-10
+            disabled:cursor-not-allowed
+            bg-green-600 hover:bg-green-500 mt-2">
+            <?= $escaper->escapeHtml(__('Get surcharge amount')) ?>
+        </button>
+    <?php endif ?>
+
+    <script>
+        (() => {
+            window.addEventListener('order:place:<?= /** noEscape */ $methodCode ?>:error', async (event) => {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 5000);
+            });
+            window.addEventListener('checkout:payment:method-activate', (event) => {
+                hyvaCheckout.payment.activate('<?= /** noEscape */ $methodCode ?>', {
+                    /**
+                     * Whenever the customer clicks "next" or "place order", depending on the checkout settings, the payment
+                     * is validated. When this is successful, Worldline Iframe returns a payment method id,
+                     * which is then set on the quote.
+                     *
+                     * @returns {Promise<unknown>}
+                     */
+                    async validate() {
+                        if (Boolean(<?= /** noEscape */ $mageWire->isApplySurcharge(); ?>)) {
+                            return true;
+                        }
+                        return new Promise(async (resolve, reject) => {
+                            if (!window['shipping_method_active']) {
+                                return resolve(false);
+                            }
+                            if (window.iframeRender) {
+                                window.iframeRender.submitTokenization().then(async (result) => {
+                                    if (result.success) {
+                                        const component = Magewire.find('<?= $escaper->escapeJs($block->getNameInLayout()) ?>');
+                                        component.setAdditionalInformation(JSON.stringify({
+                                            color_depth: window.screen.colorDepth,
+                                            java_enabled: window.navigator.javaEnabled(),
+                                            locale: window.navigator.language,
+                                            screen_height: window.screen.height,
+                                            screen_width: window.screen.width,
+                                            timezone_offset_utc_minutes: (new Date()).getTimezoneOffset(),
+                                            hosted_tokenization_id: result.hostedTokenizationId,
+                                            is_active_payment_token_enabler: Boolean(<?= /** noEscape */ $mageWire->isActivePaymentTokenEnabler(); ?>),
+                                            public_hash: null
+                                        })).then(() => {
+                                            resolve(true);
+                                        }, () => {
+                                            reject(new Error('Something went wrong. Please try again.'));
+                                        });
+                                    }
+                                    if (result.error) {
+                                        dispatchMessages([{
+                                            type: "error",
+                                            text: result.error.message
+                                        }], 3000);
+                                        resolve(false);
+                                    }
+                                }).catch((err) => {
+                                    window.location.reload();
+                                    resolve(false);
+                                });
+                            } else {
+                                resolve(false);
+                            }
+                        });
+                    }
+                }, document.getElementById('worldline-pay-wrapper'))
+            }, {once: true});
+        })()
+    </script>
+</div>

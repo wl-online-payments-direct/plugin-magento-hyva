@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Hyva\Checkout\Model\Magewire\Payment\PlaceOrderServiceProvider">
+        <arguments>
+            <argument name="placeOrderServiceList" xsi:type="array">
+                <item name="worldline_cc_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineCcPlaceOrderService
+                </item>
+                <item name="worldline_cc" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineCcPlaceOrderService
+                </item>
+                <item name="worldline_hosted_checkout" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineHostedCheckoutPlaceOrderService
+                </item>
+                <item name="worldline_hosted_checkout_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineHostedCheckoutPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_1" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_1_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_2" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_2_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_56" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_56_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_117" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_117_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_125" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_125_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_130" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_130_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_132" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_132_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_302" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_320" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_320_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_771" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_771_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_809" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_840" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3012" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3012_vault" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3111" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3112" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3124" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3301" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3302" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3303" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3304" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_3305" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5001" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5100" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5110" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5125" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5402" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5404" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5405" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5406" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5407" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5408" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5500" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5600" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5700" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5701" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+                <item name="worldline_redirect_payment_5702" xsi:type="object">
+                    Worldline\ThemeHyva\Model\Magewire\Payment\WorldlineRedirectPaymentPlaceOrderService
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Worldline\ThemeHyva\Model\Webhook\AdditionalIconsProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="worldline_cc" xsi:type="object">Worldline\CreditCard\Ui\PaymentIconsProvider</item>
+                <item name="worldline_redirect_payment" xsi:type="object">
+                    Worldline\PaymentCore\Ui\PaymentIconsProvider
+                </item>
+                <item name="worldline_hosted_checkout" xsi:type="object">
+                    Worldline\HostedCheckout\Ui\ConfigProvider
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Hyva\Theme\ViewModel\SvgIcons">
+        <arguments>
+            <argument name="pathPrefixMapping" xsi:type="array">
+                <item name="Worldline_PaymentCore::images" xsi:type="string">Worldline_PaymentCore::images</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

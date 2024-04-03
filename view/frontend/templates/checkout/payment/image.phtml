@@ -1,0 +1,9 @@
+<?php
+/** @var Template $block */
+/** @var Escaper $escaper */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+?>
+
+<img class="icon" src="<?= $escaper->escapeUrl($block->getIconUrl()) ?>" alt="">
