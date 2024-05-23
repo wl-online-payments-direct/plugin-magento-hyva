@@ -13,6 +13,9 @@ Worldline payment solutions work with [Luma Checkout](https://docs.hyva.io/check
 
 ### Change log:
 
+#### 1.2.1
+- Improved M2 code standards.
+
 #### 1.2.0
 - Added full compatibility with “Hyva Checkout”
 

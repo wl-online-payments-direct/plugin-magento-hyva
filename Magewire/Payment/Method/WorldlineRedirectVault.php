@@ -22,14 +22,34 @@ use Worldline\ThemeHyva\Ui\IconProvider;
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  * @SuppressWarnings(PHPMD.TooManyFields)
+ * @SuppressWarnings(PHPMD.ExcessiveParameterList)
  */
 class WorldlineRedirectVault extends WorldlineHostedCheckout
 {
+    /**
+     * @var string
+     */
     public $currentMethod = '';
-    private SessionCheckout $sessionCheckout;
-    private MethodList $methodList;
-    private CartRepositoryInterface $cartRepository;
-    private MagewireMethodList $magewireMethodList;
+
+    /**
+     * @var SessionCheckout
+     */
+    private $sessionCheckout;
+
+    /**
+     * @var MethodList
+     */
+    private $methodList;
+
+    /**
+     * @var CartRepositoryInterface
+     */
+    private $cartRepository;
+
+    /**
+     * @var MagewireMethodList
+     */
+    private $magewireMethodList;
 
     public function __construct(
         SessionCustomer $sessionCustomer,
@@ -44,7 +64,17 @@ class WorldlineRedirectVault extends WorldlineHostedCheckout
         MagewireMethodList $magewireMethodList,
         string $methodCode = 'worldline_redirect_payment_vault'
     ) {
-        parent::__construct($sessionCustomer, $sessionCheckout, $storeManager, $jsonSerializer, $vaultPaymentList, $customerTokenManagement, $iconProvider, $cartRepository, $methodCode);
+        parent::__construct(
+            $sessionCustomer,
+            $sessionCheckout,
+            $storeManager,
+            $jsonSerializer,
+            $vaultPaymentList,
+            $customerTokenManagement,
+            $iconProvider,
+            $cartRepository,
+            $methodCode
+        );
         $this->sessionCheckout = $sessionCheckout;
         $this->methodList = $methodList;
         $this->cartRepository = $cartRepository;

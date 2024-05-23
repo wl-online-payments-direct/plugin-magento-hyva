@@ -12,7 +12,7 @@ class Notification implements ArgumentInterface
     /**
      * @var ConfigProvider
      */
-    private ConfigProvider $configProvider;
+    private $configProvider;
 
     public function __construct(
         ConfigProvider $configProvider

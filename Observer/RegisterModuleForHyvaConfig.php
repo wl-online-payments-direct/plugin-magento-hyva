@@ -13,11 +13,8 @@ class RegisterModuleForHyvaConfig implements ObserverInterface
     /**
      * @var ComponentRegistrar
      */
-    private ComponentRegistrar $componentRegistrar;
+    private $componentRegistrar;
 
-    /**
-     * @param ComponentRegistrar $componentRegistrar
-     */
     public function __construct(ComponentRegistrar $componentRegistrar)
     {
         $this->componentRegistrar = $componentRegistrar;

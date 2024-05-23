@@ -27,73 +27,65 @@ use Worldline\ThemeHyva\Ui\IconProvider;
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  * @SuppressWarnings(PHPMD.TooManyFields)
+ * @SuppressWarnings(PHPMD.ExcessiveParameterList)
  */
 class WorldlineCc extends WorldlineHostedCheckout
 {
     /**
      * @var SessionCustomer
      */
-    private SessionCustomer $sessionCustomer;
+    private $sessionCustomer;
+
     /**
      * @var StoreManagerInterface
      */
-    private StoreManagerInterface $storeManager;
+    private $storeManager;
+
     /**
      * @var CreateHostedTokenizationResponseProcessor
      */
-    private CreateHostedTokenizationResponseProcessor $createHostedTokenizationResponseProcessor;
+    private $createHostedTokenizationResponseProcessor;
+
     /**
      * @var GeneralSettingsConfigInterface
      */
-    private GeneralSettingsConfigInterface $generalSettings;
+    private $generalSettings;
+
     /**
      * @var QuoteTotalInterface
      */
-    private QuoteTotalInterface $quoteTotal;
+    private $quoteTotal;
+
     /**
      * @var SurchargingQuoteRepositoryInterface
      */
-    private SurchargingQuoteRepositoryInterface $surchargingQuoteRepository;
+    private $surchargingQuoteRepository;
+
     /**
      * @var CalculateSurchargeManagement
      */
-    private CalculateSurchargeManagement $calculateSurchargeManagement;
+    private $calculateSurchargeManagement;
+
     /**
      * @var QuoteIdToMaskedQuoteIdInterface
      */
-    private QuoteIdToMaskedQuoteIdInterface $quoteIdToMaskedQuoteId;
+    private $quoteIdToMaskedQuoteId;
+
     /**
      * @var string
      */
-    private string $methodCode;
-    /**
-     * @var bool
-     */
-    public bool $isOscValid = false;
-    /**
-     * @var bool
-     */
-    public bool $iframeIsLoaded = false;
+    private $methodCode;
 
     /**
-     * @param SessionCustomer $sessionCustomer
-     * @param SessionCheckout $sessionCheckout
-     * @param StoreManagerInterface $storeManager
-     * @param Json $jsonSerializer
-     * @param PaymentMethodListInterface $vaultPaymentList
-     * @param CustomerTokenManagement $customerTokenManagement
-     * @param IconProvider $iconProvider
-     * @param CartRepositoryInterface $cartRepository
-     * @param CreateHostedTokenizationResponseProcessor $createHostedTokenizationResponseProcessor
-     * @param GeneralSettingsConfigInterface $generalSettings
-     * @param QuoteTotalInterface $quoteTotal
-     * @param SurchargingQuoteRepositoryInterface $surchargingQuoteRepository
-     * @param CalculateSurchargeManagement $calculateSurchargeManagement
-     * @param QuoteIdToMaskedQuoteIdInterface $quoteIdToMaskedQuoteId
-     * @param string $methodCode
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     * @var bool
      */
+    public $isOscValid = false;
+
+    /**
+     * @var bool
+     */
+    public $iframeIsLoaded = false;
+
     public function __construct(
         SessionCustomer                           $sessionCustomer,
         SessionCheckout                           $sessionCheckout,

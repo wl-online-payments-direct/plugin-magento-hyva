@@ -13,15 +13,17 @@ class IconProvider
     /**
      * @var CcConfig
      */
-    private CcConfig $ccConfig;
+    private $ccConfig;
+
     /**
      * @var Source
      */
-    private Source $assetSource;
+    private $assetSource;
+
     /**
      * @var PaymentIconsProvider
      */
-    private PaymentIconsProvider $paymentIconsProvider;
+    private $paymentIconsProvider;
 
     public function __construct(
         CcConfig $ccConfig,

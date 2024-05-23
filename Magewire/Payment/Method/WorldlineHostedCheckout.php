@@ -23,6 +23,7 @@ use Worldline\ThemeHyva\Ui\IconProvider;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @SuppressWarnings(PHPMD.ExcessiveParameterList)
  */
 class WorldlineHostedCheckout extends Component implements EvaluationInterface
 {
@@ -30,6 +31,7 @@ class WorldlineHostedCheckout extends Component implements EvaluationInterface
      * @var PaymentTokenInterface[]
      */
     protected $tokens;
+
     /**
      * @var array
      */
@@ -39,60 +41,57 @@ class WorldlineHostedCheckout extends Component implements EvaluationInterface
         'edit' => true,
         'createBillingAgreement' => false
     ];
+
     /**
      * @var SessionCustomer
      */
-    private SessionCustomer $sessionCustomer;
+    private $sessionCustomer;
+
     /**
      * @var SessionCheckout
      */
-    private SessionCheckout $sessionCheckout;
+    private $sessionCheckout;
+
     /**
      * @var StoreManagerInterface
      */
-    private StoreManagerInterface $storeManager;
+    private $storeManager;
+
     /**
      * @var Json
      */
-    private Json $jsonSerializer;
+    private $jsonSerializer;
+
     /**
      * @var PaymentMethodListInterface
      */
-    private PaymentMethodListInterface $vaultPaymentList;
+    private $vaultPaymentList;
+
     /**
      * @var string
      */
-    private string $methodCode;
+    private $methodCode;
+
     /**
      * @var CustomerTokenManagement
      */
-    private CustomerTokenManagement $customerTokenManagement;
+    private $customerTokenManagement;
+
     /**
      * @var IconProvider
      */
-    private IconProvider $iconProvider;
+    private $iconProvider;
+
     /**
      * @var CartRepositoryInterface
      */
-    private CartRepositoryInterface $cartRepository;
+    private $cartRepository;
+
     /**
      * @var string
      */
-    public string $currentPublicHash = '';
+    public $currentPublicHash = '';
 
-    /**
-     * @param SessionCustomer $sessionCustomer
-     * @param SessionCheckout $sessionCheckout
-     * @param StoreManagerInterface $storeManager
-     * @param Json $jsonSerializer
-     * @param PaymentMethodListInterface $vaultPaymentList
-     * @param CustomerTokenManagement $customerTokenManagement
-     * @param IconProvider $iconProvider
-     * @param CartRepositoryInterface $cartRepository
-     * @param string $methodCode
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-     */
     public function __construct(
         SessionCustomer            $sessionCustomer,
         SessionCheckout            $sessionCheckout,

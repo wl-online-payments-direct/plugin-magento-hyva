@@ -17,6 +17,8 @@ use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 use Magento\OfflinePayments\Model\Banktransfer;
 
+// phpcs:disable Generic.Files.LineLength.TooLong
+
 /** @var Escaper $escaper */
 /** @var Template $block */
 /** @var ViewModelRegistry $viewModels */
@@ -137,8 +139,8 @@ $methodCode = $mageWire->setMethodCode(str_replace('checkout.payment.method.', '
             window.addEventListener('checkout:payment:method-activate', (event) => {
                 hyvaCheckout.payment.activate('<?= /** noEscape */ $methodCode ?>', {
                     /**
-                     * Whenever the customer clicks "next" or "place order", depending on the checkout settings, the payment
-                     * is validated. When this is successful, Worldline Iframe returns a payment method id,
+                     * Whenever the customer clicks "next" or "place order", depending on the checkout settings,
+                     * the payment is validated. When this is successful, Worldline Iframe returns a payment method id,
                      * which is then set on the quote.
                      *
                      * @returns {Promise<unknown>}
