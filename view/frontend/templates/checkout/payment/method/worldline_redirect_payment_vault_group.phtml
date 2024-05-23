@@ -21,6 +21,8 @@ use Magento\OfflinePayments\Model\Banktransfer;
 use Hyva\Checkout\ViewModel\Checkout\Payment\MethodList as ViewModel;
 use Hyva\Checkout\Magewire\Checkout\Payment\MethodList as Magewire;
 
+// phpcs:disable Generic.Files.LineLength.TooLong
+
 $mageWire = $block->getData('magewire');
 $methodCode = $mageWire->setMethodCode(str_replace('checkout.payment.method.', '', $block->getNameInLayout()));
 $viewModel = $viewModels->require(ViewModel::class);

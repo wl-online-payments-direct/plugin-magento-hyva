@@ -21,21 +21,25 @@ use Worldline\RedirectPayment\Gateway\Config\Config as RedirectPaymentConfig;
  */
 class AvailableMethodsFilterPlugin
 {
-    private bool $redirectVault = false;
+    /**
+     * @var bool
+     */
+    private $redirectVault = false;
+
     /**
      * @var RedirectPaymentConfig
      */
-    private RedirectPaymentConfig $redirectPaymentConfig;
+    private $redirectPaymentConfig;
 
     /**
      * @var StoreManagerInterface
      */
-    private StoreManagerInterface $storeManager;
+    private $storeManager;
 
     /**
      * @var SessionCheckout
      */
-    private SessionCheckout $sessionCheckout;
+    private $sessionCheckout;
 
     /**
      * @var PaymentIconsProviderInterface
@@ -114,7 +118,7 @@ class AvailableMethodsFilterPlugin
 
             $payProductId = (int)str_replace('worldline_redirect_payment_', '', $code);
 
-            if (!$this->isValidPaymentProduct($payProductId, $storeId, $quote)) {
+            if (!$this->isValidPaymentProduct($payProductId, $storeId)) {
                 return true;
             }
 
@@ -130,10 +134,9 @@ class AvailableMethodsFilterPlugin
     /**
      * @param int $payProductId
      * @param int $storeId
-     * @param Quote $quote
      * @return bool
      */
-    private function isValidPaymentProduct(int $payProductId, int $storeId, Quote $quote): bool
+    private function isValidPaymentProduct(int $payProductId, int $storeId): bool
     {
         if (!$this->redirectPaymentConfig->isPaymentProductActive($payProductId, $storeId)
             || !$this->iconProvider->getIconById($payProductId, $storeId)) {

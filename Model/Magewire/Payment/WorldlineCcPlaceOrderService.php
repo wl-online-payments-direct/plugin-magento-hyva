@@ -32,35 +32,42 @@ class WorldlineCcPlaceOrderService extends AbstractPlaceOrderService
     /**
      * @var CreatePaymentManagement
      */
-    private CreatePaymentManagement $createPaymentManagement;
+    private $createPaymentManagement;
+
     /**
      * @var SessionCustomer
      */
-    private SessionCustomer $sessionCustomer;
+    private $sessionCustomer;
+
     /**
      * @var PaymentMethodManagementInterface
      */
-    private PaymentMethodManagementInterface $paymentMethodManagement;
+    private $paymentMethodManagement;
+
     /**
      * @var QuoteIdToMaskedQuoteIdInterface
      */
-    private QuoteIdToMaskedQuoteIdInterface $quoteIdToMaskedQuoteId;
+    private $quoteIdToMaskedQuoteId;
+
     /**
      * @var string
      */
-    private string $redirectPath;
+    private $redirectPath;
+
     /**
      * @var bool
      */
-    private bool $canRedirected = true;
+    private $canRedirected = true;
+
     /**
      * @var UrlInterface
      */
-    private UrlInterface $url;
+    private $url;
+
     /**
      * @var ReturnRequestProcessor
      */
-    private ReturnRequestProcessor $returnRequestProcessor;
+    private $returnRequestProcessor;
 
     public function __construct(
         CartManagementInterface          $cartManagement,

@@ -17,6 +17,8 @@ use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 use Magento\OfflinePayments\Model\Banktransfer;
 
+// phpcs:disable Generic.Files.LineLength.TooLong
+
 $mageWire = $block->getData('magewire');
 $methodCode = $mageWire->setMethodCode(str_replace('checkout.payment.method.', '', $block->getNameInLayout()));
 ?>

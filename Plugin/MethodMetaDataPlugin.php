@@ -16,26 +16,23 @@ class MethodMetaDataPlugin
     /**
      * @var Layout
      */
-    private Layout $layout;
+    private $layout;
+
     /**
      * @var StoreManagerInterface
      */
-    private StoreManagerInterface $storeManager;
+    private $storeManager;
+
     /**
      * @var SystemConfigPayment
      */
-    private SystemConfigPayment $systemConfigPayment;
+    private $systemConfigPayment;
+
     /**
      * @var AdditionalIconsProcessor
      */
-    private AdditionalIconsProcessor $additionalIconsProcessor;
+    private $additionalIconsProcessor;
 
-    /**
-     * @param Layout $layout
-     * @param StoreManagerInterface $storeManager
-     * @param SystemConfigPayment $systemConfigPayment
-     * @param AdditionalIconsProcessor $additionalIconsProcessor
-     */
     public function __construct(
         Layout                   $layout,
         StoreManagerInterface    $storeManager,

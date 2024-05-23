@@ -14,6 +14,8 @@ declare(strict_types=1);
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
+// phpcs:disable Generic.Files.LineLength.TooLong
+
 $mageWire = $block->getData('magewire');
 $methodCode = $mageWire->setMethodCode(str_replace('checkout.payment.method.', '', $block->getNameInLayout()));
 ?>
@@ -36,7 +38,7 @@ $methodCode = $mageWire->setMethodCode(str_replace('checkout.payment.method.', '
                         public_hash: '<?= /* @noEscape */ $mageWire->getPublicHash(); ?>',
                         customer_id: <?= /* @noEscape */ $mageWire->getCustomerId(); ?>
                     }));
-                    const paymentListComponent = Magewire.find('<?= $block->getParentBlock()->getNameInLayout() ?>');
+                    const paymentListComponent = Magewire.find('<?= /** noEscape */ $block->getParentBlock()->getNameInLayout() ?>');
                     paymentListComponent.updatedMethod('<?= /** noEscape */ $methodCode ?>');
                 }
             })
